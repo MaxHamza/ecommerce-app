@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AfterSplashCubit(),
+      create: (context) => AfterSplashCubit()..appStarted(),
       child: MaterialApp(
         theme: AppTheme.appTheme,
         home: const SplashScreen(),

@@ -12,7 +12,6 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    BlocProvider.of<AfterSplashCubit>(context).appStarted();
     return BlocListener<AfterSplashCubit, AfterSplashState>(
       listener: (context, state){
        if(state is AfterSplashUnAuth){
