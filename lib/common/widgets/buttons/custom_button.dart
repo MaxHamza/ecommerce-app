@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     return MaterialButton(
       onPressed:onPressed,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(20))
+        borderRadius: BorderRadius.all(Radius.circular(30))
       ),
       minWidth: double.infinity,
       height: 47,

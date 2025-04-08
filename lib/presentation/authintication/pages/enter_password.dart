@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shop_application/presentation/authintication/pages/forgot_password.dart';
 import '../../../common/helper/navigations/app_navigator.dart';
+import '../../../common/widgets/appBar/basic_app_bar.dart';
 import '../../../common/widgets/buttons/custom_button.dart';
 import '../../../common/widgets/custom_rich_text.dart';
 import '../../../common/widgets/custom_text_field.dart';
@@ -13,9 +15,10 @@ class EnterPassword extends StatelessWidget {
       double width=MediaQuery.of(context).size.width;
       double height=MediaQuery.of(context).size.height;
       return  Scaffold(
+       appBar: const BasicAppbar(),
         backgroundColor: AppColors.background,
         body: Padding(padding: EdgeInsets.symmetric(
-          vertical: height*0.1,
+          vertical: height*0.03,
           horizontal: width*0.04,
         ),
           child: Column(
@@ -29,11 +32,14 @@ class EnterPassword extends StatelessWidget {
               const  CustomTextField(hide: false, hint: 'Password',keyboardType: TextInputType.emailAddress,),
               SizedBox(height: height*0.02,),
               CustomButton(text: 'Continue',onPressed: (){
-                AppNavigator.route(context,const EnterPassword());
+                AppNavigator.pushReplacement(context,const EnterPassword());
               },),
               SizedBox(height: height*0.02,),
-              const  CustomRichText(title1: 'Forgot Password ',
+                CustomRichText(title1: 'Forgot Password? ',
                 title2: 'Reset',
+                ontTap: (){
+                AppNavigator.push(context,const ForgotPassword());
+                },
               )
             ],
           ),
