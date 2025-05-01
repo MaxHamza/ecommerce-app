@@ -1,10 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_application/core/configs/theme/app_theme.dart';
 import 'package:shop_application/presentation/splash/bloc/after_splash_cubit.dart';
 import 'package:shop_application/presentation/splash/pages/splash_screen.dart';
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

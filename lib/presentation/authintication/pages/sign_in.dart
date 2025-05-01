@@ -17,7 +17,7 @@ class SignIn extends StatelessWidget {
     double width=MediaQuery.of(context).size.width;
     double height=MediaQuery.of(context).size.height;
     return  Scaffold(
-      appBar:const BasicAppbar(hideBack: false,),
+      appBar:const BasicAppbar(hideBack: true,),
       backgroundColor: AppColors.background,
       body: Padding(padding: EdgeInsets.symmetric(
         vertical: height*0.03,
