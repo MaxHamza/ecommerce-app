@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "1058350874302",
-    "project_id": "ecommerce-app-28424",
-    "storage_bucket": "ecommerce-app-28424.firebasestorage.app"
+    "project_number": "265508361277",
+    "firebase_url": "https://shop-app-a5a8a-default-rtdb.firebaseio.com",
+    "project_id": "shop-app-a5a8a",
+    "storage_bucket": "shop-app-a5a8a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1058350874302:android:66ecb6ee4efd3b61cd68ef",
+        "mobilesdk_app_id": "1:265508361277:android:658f2a270bf2288f9d4654",
         "android_client_info": {
           "package_name": "com.example.shop_application"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB1kmIpiO79RzwF68qAQ1lrDXUOActxLBU"
+          "current_key": "AIzaSyDpJrat1zXQiLMyfhGwoj9nflY3kBdESjQ"
         }
       ],
       "services": {
