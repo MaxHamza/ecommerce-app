@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +10,7 @@ import 'package:shop_application/presentation/authintication/pages/sign_up%20_pa
 
 abstract class AuthFirebaseService{
   Future<Either>signUp(UserCreateReq user);
+  Future<Either>getAges();
 }
 class AuthFirebaseServiceImpl extends AuthFirebaseService{
   @override
@@ -34,4 +37,15 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService{
       return left(message);
     }
     }
+
+  @override
+  Future<Either> getAges() async{
+   try{
+    QuerySnapshot querySnapshot= await FirebaseFirestore.instance.collection('ages').get();
+    return right(querySnapshot.docs);
+   }
+   on FirebaseException catch(e){
+     return left('please try again');
+   }
+  }
   }

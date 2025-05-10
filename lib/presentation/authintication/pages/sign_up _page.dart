@@ -1,14 +1,17 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_application/common/helper/navigations/app_navigator.dart';
 import 'package:shop_application/common/widgets/appBar/basic_app_bar.dart';
 import 'package:shop_application/common/widgets/custom_rich_text.dart';
 import 'package:shop_application/core/configs/theme/app_colors.dart';
 import 'package:shop_application/common/widgets/buttons/custom_button.dart';
 import 'package:shop_application/common/widgets/custom_title.dart';
+import 'package:shop_application/presentation/authintication/bloc/age_selection_cubit.dart';
+import 'package:shop_application/presentation/authintication/pages/age_gender_selection.dart';
 import 'package:shop_application/presentation/authintication/pages/sign_in.dart';
 import '../../../common/widgets/custom_text_field.dart';
-import 'forgot_password.dart';
+import '../bloc/gender_cubit.dart';
+
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
   @override
@@ -39,7 +42,14 @@ class SignUp extends StatelessWidget {
             const  CustomTextField(hide: false, hint: 'Password',keyboardType: TextInputType.emailAddress,),
             SizedBox(height: height*0.02,),
             CustomButton(text: 'Continue',onPressed: (){
-           //   AppNavigator.push(context, const EnterPassword());
+           AppNavigator.push(context,MultiBlocProvider(
+             providers: [
+               BlocProvider<AgeSelectionCubit>(create: (context)=>AgeSelectionCubit()),
+               BlocProvider<GenderCubit>(create: (context)=>GenderCubit()),
+             ],
+           child:const AgeGenderSelection(),
+
+              ));
             },),
             SizedBox(height: height*0.02,),
             CustomRichText(title1: 'Do you have an account? ',

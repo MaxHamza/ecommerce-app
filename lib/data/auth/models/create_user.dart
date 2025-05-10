@@ -4,7 +4,7 @@ class UserCreateReq {
   final String email;
   final String password;
   final int gender;
-  final int age;
+  final String age;
 
   UserCreateReq(
       {required this.firstName,

@@ -11,4 +11,9 @@ class AuthRepositoryImpl extends AuthRepository{
    return sl<AuthFirebaseService>().signUp(createUser);
   }
 
+  @override
+  Future<Either> getAges() {
+   return sl<AuthFirebaseService>().getAges();
+  }
+
 }
