@@ -4,9 +4,9 @@ import 'package:shop_application/data/auth/models/create_user.dart';
 import 'package:shop_application/domain/authintication/repository/auth.dart';
 import '../../../service_locator.dart';
 
-class GetAges extends UseCases<Either,UserCreateReq>{
+class GetAges extends UseCases<Either,dynamic>{
   @override
-  Future<Either> call(param) {
+  Future<Either> call(dynamic param) {
     return sl<AuthRepository>().getAges();
   }
 

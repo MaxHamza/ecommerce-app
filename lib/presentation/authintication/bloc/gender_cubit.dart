@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-part 'gender_state.dart';
 
 class GenderCubit extends Cubit<int> {
   GenderCubit() : super(0);

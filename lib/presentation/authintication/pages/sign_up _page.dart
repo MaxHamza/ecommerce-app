@@ -7,6 +7,7 @@ import 'package:shop_application/core/configs/theme/app_colors.dart';
 import 'package:shop_application/common/widgets/buttons/custom_button.dart';
 import 'package:shop_application/common/widgets/custom_title.dart';
 import 'package:shop_application/presentation/authintication/bloc/age_selection_cubit.dart';
+import 'package:shop_application/presentation/authintication/bloc/get_ages_cubit.dart';
 import 'package:shop_application/presentation/authintication/pages/age_gender_selection.dart';
 import 'package:shop_application/presentation/authintication/pages/sign_in.dart';
 import '../../../common/widgets/custom_text_field.dart';
@@ -44,7 +45,6 @@ class SignUp extends StatelessWidget {
             CustomButton(text: 'Continue',onPressed: (){
            AppNavigator.push(context,MultiBlocProvider(
              providers: [
-               BlocProvider<AgeSelectionCubit>(create: (context)=>AgeSelectionCubit()),
                BlocProvider<GenderCubit>(create: (context)=>GenderCubit()),
              ],
            child:const AgeGenderSelection(),

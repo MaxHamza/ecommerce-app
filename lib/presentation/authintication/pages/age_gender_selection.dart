@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_application/common/helper/bottom_sheet/app_bottomsheet.dart';
 import 'package:shop_application/common/widgets/buttons/custom_button.dart';
 import 'package:shop_application/presentation/authintication/bloc/age_selection_cubit.dart';
 import 'package:shop_application/presentation/authintication/bloc/gender_cubit.dart';
+import 'package:shop_application/presentation/authintication/bloc/get_ages_cubit.dart';
 import '../../../core/configs/theme/app_colors.dart';
+import '../widgets/bottom_sheet_widget.dart';
 
 class AgeGenderSelection extends StatelessWidget {
   const AgeGenderSelection({super.key});
@@ -46,42 +49,44 @@ class AgeGenderSelection extends StatelessWidget {
                   ),
                   BlocBuilder<GenderCubit, int>(
                     builder: (context, state) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            MaterialButton(
-                              onPressed: () {
-                                BlocProvider.of<GenderCubit>(context)
-                                    .genderChange(0);
-                              },
-                              minWidth: 120,
-                              height: 45,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                              color: state == 0 ? AppColors.primary : const Color(
-                                  0xFF2C2C3E),
-                              child: Text('Man'),
-                            ),
-                            SizedBox(
-                              width: width * 0.06,
-                            ),
-                            MaterialButton(
-                              onPressed: () {
-                                BlocProvider.of<GenderCubit>(context)
-                                    .genderChange(1);
-                              },
-                              minWidth: 120,
-                              height: 45,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                              child: Text('Women'),
-                              color: state== 1 ? AppColors.primary : Color(
-                                  0xFF2C2C3E),
-                            ),
-                          ],
-                        );
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MaterialButton(
+                            onPressed: () {
+                              BlocProvider.of<GenderCubit>(context)
+                                  .genderChange(0);
+                            },
+                            minWidth: 120,
+                            height: 45,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30))),
+                            color: state == 0
+                                ? AppColors.primary
+                                : const Color(0xFF2C2C3E),
+                            child: Text('Man'),
+                          ),
+                          SizedBox(
+                            width: width * 0.06,
+                          ),
+                          MaterialButton(
+                            onPressed: () {
+                              BlocProvider.of<GenderCubit>(context)
+                                  .genderChange(1);
+                            },
+                            minWidth: 120,
+                            height: 45,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30))),
+                            child: Text('Women'),
+                            color: state == 1
+                                ? AppColors.primary
+                                : Color(0xFF2C2C3E),
+                          ),
+                        ],
+                      );
                     },
                   ),
                   SizedBox(
@@ -92,33 +97,43 @@ class AgeGenderSelection extends StatelessWidget {
                     height: height * 0.02,
                   ),
                   BlocBuilder<AgeSelectionCubit, String>(
-                  builder: (context, state) {
-                     return DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      labelText: state,
-                      labelStyle:const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor:const Color(0xFF2C2C3E), // dark purple background
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30), // rounded corners
-                        borderSide: BorderSide.none,
-                      ),
-                      contentPadding:const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                    ),
-                    dropdownColor: const Color(0xFF2C2C3E), // dropdown background
-                    iconEnabledColor: Colors.white,   // dropdown arrow color
-                    style:const TextStyle(color: Colors.white),
-                    value: null,
-                    items: ['18-25', '26-35', '36-45', '46+']
-                        .map((age) => DropdownMenuItem(value: age, child: Text(age)))
-                        .toList(),
-                    onChanged: (value) {
-                      // handle selection
+                    builder: (context, state) {
+                      return GestureDetector(
+                          onTap: () {
+                            BlocProvider.of<GetAgesCubit>(context).getAges();
+                            AppBottomSheet.display(
+                              context,
+                              const BottomSheetWidget(),
+                            );
+                          },
+                          child: Container(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: width * 0.02),
+                            height: height * 0.06,
+                            decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              color: Color(0xFF2C2C3E),
+                            ),
+                            child: Row(
+                              children: [
+                                Text(
+                                  state,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Spacer(),
+                                Icon(
+                                  Icons.arrow_drop_down_outlined,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
                     },
-                  );
-  },
-)
-
+                  )
                 ],
               ),
             ),
