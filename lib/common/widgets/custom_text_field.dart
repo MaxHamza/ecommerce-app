@@ -7,8 +7,8 @@ class CustomTextField extends StatelessWidget {
       required this.hide,
       this.keyboardType,
       this.validator,
-      required this.hint});
-
+      required this.hint, required this.controller});
+  final TextEditingController controller;
   final bool hide;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller:controller,
       obscureText: hide,
       keyboardType: keyboardType,
       validator: validator,

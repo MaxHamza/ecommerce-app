@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_application/presentation/authintication/bloc/age_selection_cubit.dart';
 import 'package:shop_application/presentation/authintication/bloc/get_ages_cubit.dart';
 
 class BottomSheetWidget extends StatelessWidget {
   const BottomSheetWidget({super.key});
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -30,7 +30,12 @@ class BottomSheetWidget extends StatelessWidget {
           padding: EdgeInsets.all(16),
           child: ListView.separated(
               itemBuilder: (context,index){
-                return Text(state.query[index].data()['value']);
+                return GestureDetector(
+                    onTap: (){
+                      BlocProvider.of<AgeSelectionCubit>(context).displayAge(state.query[index].data()['value']);
+                      Navigator.pop(context);
+                    },
+                    child: Text(state.query[index].data()['value']));
               },
               separatorBuilder: (context,state){
                 return SizedBox(height: height*0.02,);
@@ -40,7 +45,7 @@ class BottomSheetWidget extends StatelessWidget {
       );
     }
      else{
-       return Center(
+       return const Center(
          child: CircularProgressIndicator(),
        );
      }

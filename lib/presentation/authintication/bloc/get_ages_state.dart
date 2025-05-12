@@ -1,7 +1,7 @@
 part of 'get_ages_cubit.dart';
 
 sealed class GetAgesState {}
-
+final class GetAgesInitial extends GetAgesState {}
 final class GetAgesLoading extends GetAgesState {}
 final class GetAgesLoaded extends GetAgesState {
   List<QueryDocumentSnapshot<Map<String,dynamic>>> query;

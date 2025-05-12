@@ -8,8 +8,8 @@ import '../../../common/widgets/custom_text_field.dart';
 import '../../../common/widgets/custom_title.dart';
 import '../../../core/configs/theme/app_colors.dart';
 class EnterPassword extends StatelessWidget {
-  const EnterPassword({super.key});
-
+   EnterPassword({super.key});
+  TextEditingController passCon=TextEditingController();
   @override
     Widget build(BuildContext context) {
       double width=MediaQuery.of(context).size.width;
@@ -29,16 +29,18 @@ class EnterPassword extends StatelessWidget {
                   fontWeight: FontWeight.bold
               ),),
               SizedBox(height: height*0.02,),
-              const  CustomTextField(hide: false, hint: 'Password',keyboardType: TextInputType.emailAddress,),
+                CustomTextField(
+              controller: passCon,
+                hide: false, hint: 'Password',keyboardType: TextInputType.emailAddress,),
               SizedBox(height: height*0.02,),
               CustomButton(text: 'Continue',onPressed: (){
-                AppNavigator.pushReplacement(context,const EnterPassword());
+                AppNavigator.pushReplacement(context, EnterPassword());
               },),
               SizedBox(height: height*0.02,),
                 CustomRichText(title1: 'Forgot Password? ',
                 title2: 'Reset',
                 ontTap: (){
-                AppNavigator.push(context,const ForgotPassword());
+                AppNavigator.push(context, ForgotPassword());
                 },
               )
             ],

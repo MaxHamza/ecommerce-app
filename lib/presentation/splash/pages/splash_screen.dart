@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
     return BlocListener<AfterSplashCubit, AfterSplashState>(
       listener: (context, state){
        if(state is AfterSplashUnAuth){
-         Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignIn()));
+         Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn()));
        }
       },
       child: Scaffold(

@@ -7,7 +7,8 @@ import '../../../common/widgets/custom_text_field.dart';
 import '../../../common/widgets/custom_title.dart';
 import '../../../core/configs/theme/app_colors.dart';
 class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
+   ForgotPassword({super.key});
+  TextEditingController emailCon=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,9 @@ class ForgotPassword extends StatelessWidget {
                 fontWeight: FontWeight.bold
             ),),
             SizedBox(height: height*0.02,),
-            const  CustomTextField(hide: false, hint: 'Enter Email Address',keyboardType: TextInputType.emailAddress,),
+              CustomTextField(
+                controller: emailCon,
+                hide: false, hint: 'Enter Email Address',keyboardType: TextInputType.emailAddress,),
             SizedBox(height: height*0.02,),
             CustomButton(text: 'Continue',onPressed: (){
               //AppNavigator.pushReplacement(context,const EnterPassword());

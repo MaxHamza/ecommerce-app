@@ -10,8 +10,8 @@ import 'package:shop_application/presentation/authintication/pages/sign_up%20_pa
 import '../../../common/widgets/custom_text_field.dart';
 import 'enter_password.dart';
 class SignIn extends StatelessWidget {
-  const SignIn({super.key});
-
+   SignIn({super.key});
+  TextEditingController emailCon=TextEditingController();
   @override
   Widget build(BuildContext context) {
     double width=MediaQuery.of(context).size.width;
@@ -31,16 +31,18 @@ class SignIn extends StatelessWidget {
               fontWeight: FontWeight.bold
             ),),
             SizedBox(height: height*0.02,),
-          const  CustomTextField(hide: false, hint: 'Email Address',keyboardType: TextInputType.emailAddress,),
+            CustomTextField(hide: false,
+            controller: emailCon,
+            hint: 'Email Address',keyboardType: TextInputType.emailAddress,),
             SizedBox(height: height*0.02,),
              CustomButton(text: 'Continue',onPressed: (){
-              AppNavigator.push(context, const EnterPassword());
+              AppNavigator.push(context,  EnterPassword());
              },),
             SizedBox(height: height*0.02,),
             CustomRichText(title1: 'Don\'t have an Account? ',
             title2: 'Create one',
             ontTap: (){
-            AppNavigator.pushReplacement(context,const SignUp());
+            AppNavigator.pushReplacement(context, SignUp());
             },
             )
           ],
