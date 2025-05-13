@@ -13,149 +13,173 @@ import '../../../domain/authintication/usecases/sign_up.dart';
 import '../widgets/bottom_sheet_widget.dart';
 
 class AgeGenderSelection extends StatelessWidget {
-  const AgeGenderSelection({super.key, required this.userCreateReq,});
+  const AgeGenderSelection({
+    super.key,
+    required this.userCreateReq,
+  });
+
   final UserCreateReq userCreateReq;
+
   @override
   Widget build(BuildContext context) {
     final gender = context.select((GenderCubit cubit) => cubit.gender);
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Container(
         height: height,
         width: width,
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(
-                top: height * 0.2,
-                left: width * 0.03,
-                right: width * 0.03,
-              ),
-              width: width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Tell us About yourself',
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+        child: BlocListener<ReactiveButtonsCubit, ReactiveButtonsState>(
+          listener: (context, state) {
+            if (state is ReactiveButtonsFailure) {
+              var snackbar = SnackBar(
+                content: Text(
+                  state.message,
+                  style: TextStyle(
+                    color: Colors.white, // Change text color here
+                    fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(
-                    height: height * 0.06,
-                  ),
-                  Text('who do you shop for ?'),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  BlocBuilder<GenderCubit, int>(
-                    builder: (context, state) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          MaterialButton(
-                            onPressed: () {
-                              BlocProvider.of<GenderCubit>(context)
-                                  .genderChange(0);
-                            },
-                            minWidth: 120,
-                            height: 45,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(30))),
-                            color: state == 0
-                                ? AppColors.primary
-                                : const Color(0xFF2C2C3E),
-                            child: Text('Man'),
-                          ),
-                          SizedBox(
-                            width: width * 0.06,
-                          ),
-                          MaterialButton(
-                            onPressed: () {
-                              BlocProvider.of<GenderCubit>(context)
-                                  .genderChange(1);
-                            },
-                            minWidth: 120,
-                            height: 45,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(30))),
-                            child: Text('Women'),
-                            color: state == 1
-                                ? AppColors.primary
-                                : Color(0xFF2C2C3E),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                  SizedBox(
-                    height: height * 0.06,
-                  ),
-                  Text('How Old Are you ?'),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  BlocBuilder<AgeSelectionCubit, String>(
-                    builder: (context, state) {
-                      return GestureDetector(
-                        onTap: () {
-                          BlocProvider.of<GetAgesCubit>(context).getAges();
-                          AppBottomSheet.display(
-                            context,
-                            BottomSheetWidget(),
-                          );
-                        },
-                        child: Container(
-                          padding:
-                          EdgeInsets.symmetric(horizontal: width * 0.02),
-                          height: height * 0.06,
-                          decoration: const BoxDecoration(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(20)),
-                            color: Color(0xFF2C2C3E),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                state,
-                                style: TextStyle(
+                ),
+                behavior: SnackBarBehavior.floating,
+                backgroundColor: Colors.black,
+                dismissDirection: DismissDirection.startToEnd,
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackbar);
+            }
+          },
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.only(
+                  top: height * 0.2,
+                  left: width * 0.03,
+                  right: width * 0.03,
+                ),
+                width: width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Tell us About yourself',
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: height * 0.06,
+                    ),
+                    Text('who do you shop for ?'),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    BlocBuilder<GenderCubit, int>(
+                      builder: (context, state) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            MaterialButton(
+                              onPressed: () {
+                                BlocProvider.of<GenderCubit>(context)
+                                    .genderChange(0);
+                              },
+                              minWidth: 120,
+                              height: 45,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30))),
+                              color: state == 0
+                                  ? AppColors.primary
+                                  : const Color(0xFF2C2C3E),
+                              child: Text('Man'),
+                            ),
+                            SizedBox(
+                              width: width * 0.06,
+                            ),
+                            MaterialButton(
+                              onPressed: () {
+                                BlocProvider.of<GenderCubit>(context)
+                                    .genderChange(1);
+                              },
+                              minWidth: 120,
+                              height: 45,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30))),
+                              child: Text('Women'),
+                              color: state == 1
+                                  ? AppColors.primary
+                                  : Color(0xFF2C2C3E),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                    SizedBox(
+                      height: height * 0.06,
+                    ),
+                    Text('How Old Are you ?'),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    BlocBuilder<AgeSelectionCubit, String>(
+                      builder: (context, state) {
+                        return GestureDetector(
+                          onTap: () {
+                            BlocProvider.of<GetAgesCubit>(context).getAges();
+                            AppBottomSheet.display(
+                              context,
+                              BottomSheetWidget(),
+                            );
+                          },
+                          child: Container(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: width * 0.02),
+                            height: height * 0.06,
+                            decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              color: Color(0xFF2C2C3E),
+                            ),
+                            child: Row(
+                              children: [
+                                Text(
+                                  state,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Spacer(),
+                                Icon(
+                                  Icons.arrow_drop_down_outlined,
                                   color: Colors.white,
                                 ),
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.arrow_drop_down_outlined,
-                                color: Colors.white,
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  )
-                ],
+                        );
+                      },
+                    )
+                  ],
+                ),
               ),
-            ),
-            const Spacer(),
-            ReactiveButton(
-              color:const Color(0xFF2C2C3E), title: 'Finish', onPressed: () {
-                userCreateReq.gender=BlocProvider.of<GenderCubit>(context).gender;
-                userCreateReq.age=BlocProvider.of<AgeSelectionCubit>(context).selectedAge;
-              context.read<ReactiveButtonsCubit>().execute(useCases: SignUpUseCase(),
-                  param:userCreateReq);
-            },)
-          ],
+              const Spacer(),
+              ReactiveButton(
+                color: const Color(0xFF2C2C3E),
+                title: 'Finish',
+                onPressed: () {
+                  userCreateReq.gender =
+                      BlocProvider.of<GenderCubit>(context).gender;
+                  userCreateReq.age =
+                      BlocProvider.of<AgeSelectionCubit>(context).selectedAge;
+                  context
+                      .read<ReactiveButtonsCubit>()
+                      .execute(useCases: SignUpUseCase(), param: userCreateReq);
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

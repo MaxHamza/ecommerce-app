@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_application/common/helper/bloc/reactive_buttons_cubit.dart';
-import 'package:shop_application/common/helper/bloc/reactive_buttons_cubit.dart';
-
 import 'custom_button.dart';
 
 class ReactiveButton extends StatelessWidget{
@@ -24,7 +22,7 @@ class ReactiveButton extends StatelessWidget{
           ),
           height: height * 0.13,
           color: color,
-          child: Center(
+          child:const Center(
             child: CircularProgressIndicator(),
           )
       );
